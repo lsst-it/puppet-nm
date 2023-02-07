@@ -1,0 +1,47 @@
+{
+  "name": "lsst-nm",
+  "version": "0.1.0",
+  "author": "AURA/LSST/Rubin Observatory",
+  "summary": "manages the infamous NetworkManager",
+  "license": "Apache-2.0",
+  "source": "https://github.com/lsst-it/puppet-nm.git",
+  "tags": [
+    "networkmanager",
+    "nm",
+    "nmconnection",
+    ".nmconnection",
+    "system-connections",
+    "nmcli"
+  ],
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 7.0.0 < 10.0.0"
+    },
+    {
+      "name": "puppet/extlib",
+      "version_requirement": ">= 6.0.0 < 7.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "AlmaLinux",
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 6.21.0 < 8.0.0"
+    }
+  ]
+}

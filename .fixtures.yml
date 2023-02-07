@@ -1,0 +1,10 @@
+# This file can be used to install module dependencies for unit testing
+# See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
+---
+fixtures:
+  repositories:
+    extlib:
+      repo: "https://github.com/voxpupuli/puppet-extlib"
+      branch: "feature/to_ini"
+  forge_modules:
+    stdlib: "puppetlabs/stdlib"
