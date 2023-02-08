@@ -10,6 +10,8 @@ class nm (
   $conf_dir= '/etc/NetworkManager/conf.d'
   $conn_dir = '/etc/NetworkManager/system-connections'
 
+  require nm::install
+
   # remove ifcfg-* files to prevent conflicts between ifcfg- and .nmconnection
   file { '/etc/sysconfig/network-scripts':
     ensure  => 'directory',

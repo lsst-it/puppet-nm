@@ -11,5 +11,9 @@ describe 'nm class' do
     end
 
     it_behaves_like 'an idempotent resource'
+
+    describe package('NetworkManager') do
+      it { is_expected.to be_installed }
+    end
   end
 end
