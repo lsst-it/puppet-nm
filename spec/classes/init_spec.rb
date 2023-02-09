@@ -17,7 +17,7 @@ describe 'nm' do
             ensure: 'directory',
             purge: true,
             recurse: true,
-            force: true,
+            force: true
           )
         end
 
@@ -26,7 +26,7 @@ describe 'nm' do
             ensure: 'directory',
             purge: true,
             recurse: true,
-            force: true,
+            force: true
           )
         end
 
@@ -35,14 +35,14 @@ describe 'nm' do
             ensure: 'directory',
             purge: true,
             recurse: true,
-            force: true,
+            force: true
           )
         end
 
         it do
           is_expected.to contain_exec('nmcli conn reload').with(
             command: '/bin/nmcli conn reload',
-            refreshonly: true,
+            refreshonly: true
           )
         end
       end
