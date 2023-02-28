@@ -21,7 +21,7 @@ describe 'nm::connection' do
         is_expected.to contain_file('/etc/NetworkManager/system-connections/foo.nmconnection').with(
           ensure: 'file',
           mode: '0600',
-          content: 'bar',
+          content: 'bar'
         ).that_notifies('Exec[nmcli conn reload]')
       end
 
@@ -31,7 +31,7 @@ describe 'nm::connection' do
 
           it do
             is_expected.to contain_file('/etc/NetworkManager/system-connections/foo.nmconnection').with(
-              ensure: 'absent',
+              ensure: 'absent'
             )
           end
         end
@@ -41,7 +41,7 @@ describe 'nm::connection' do
 
           it do
             is_expected.to contain_file('/etc/NetworkManager/system-connections/foo.nmconnection').with(
-              ensure: 'file',
+              ensure: 'file'
             )
           end
         end

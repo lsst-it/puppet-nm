@@ -5,6 +5,5 @@ fixtures:
   repositories:
     extlib:
       repo: "https://github.com/voxpupuli/puppet-extlib"
-      branch: "feature/to_ini"
   forge_modules:
     stdlib: "puppetlabs/stdlib"
