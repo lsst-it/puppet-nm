@@ -2,14 +2,20 @@
 #  Create a .nmconnection file
 #
 # @param content
+#   If a String:
 #   Verbatim content of .nmconnection "keyfile".
+#
+#   If a Hash:
+#   Hash of data to serialize to a .nmconnection "keyfile".
+#
 #   See: https://networkmanager.dev/docs/api/latest/nm-settings-keyfile.html
 #
 # @param ensure
 #   If connection file should be present or absent.
 #
+#
 define nm::connection (
-  String[1] $content,
+  Variant[String[1], Hash[String, Hash]] $content,
   Enum['present', 'absent'] $ensure = 'present',
 ) {
   $_real_ensure = $ensure ? {
@@ -17,10 +23,17 @@ define nm::connection (
     default  => 'file',
   }
 
+  $ini_config = { 'quote_char' => undef }
+
+  $_real_content = $content ? {
+    String => $content,
+    Hash   => extlib::to_ini($content, $ini_config),
+  }
+
   file { "${nm::conn_dir}/${name}.nmconnection":
     ensure  => $_real_ensure,
     mode    => '0600',
-    content => $content,
+    content => $_real_content,
     notify  => Exec['nmcli conn reload'],
   }
 }
