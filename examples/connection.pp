@@ -1,5 +1,3 @@
-include nm
-
 nm::connection { 'test':
   content => {
     'connection' => {

@@ -18,6 +18,8 @@ define nm::connection (
   Variant[String[1], Hash[String, Hash]] $content,
   Enum['present', 'absent'] $ensure = 'present',
 ) {
+  include nm
+
   $_real_ensure = $ensure ? {
     'absent' => 'absent',
     default  => 'file',
