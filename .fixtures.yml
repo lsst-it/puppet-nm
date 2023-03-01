@@ -2,8 +2,6 @@
 # See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
 ---
 fixtures:
-  repositories:
-    extlib:
-      repo: "https://github.com/voxpupuli/puppet-extlib"
   forge_modules:
+    extlib: "puppet/extlib"
     stdlib: "puppetlabs/stdlib"
