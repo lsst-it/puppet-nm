@@ -33,4 +33,14 @@ describe 'nm::connection' do
       end
     end
   end
+
+  context 'connection absent' do
+    include_examples 'the example', 'connection_absent.pp'
+
+    it_behaves_like 'an idempotent resource'
+
+    describe file('/etc/NetworkManager/system-connections/test.nmconnection') do
+      it { is_expected.not_to exist }
+    end
+  end
 end
