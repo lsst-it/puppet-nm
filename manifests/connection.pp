@@ -15,7 +15,7 @@
 #
 #
 define nm::connection (
-  Variant[String[1], Hash[String, Hash]] $content,
+  Optional[Variant[String[1], Hash[String, Hash]]] $content = undef,
   Enum['present', 'absent'] $ensure = 'present',
 ) {
   include nm
@@ -28,8 +28,9 @@ define nm::connection (
   $ini_config = { 'quote_char' => undef }
 
   $_real_content = $content ? {
-    String => $content,
-    Hash   => extlib::to_ini($content, $ini_config),
+    String  => $content,
+    Hash    => extlib::to_ini($content, $ini_config),
+    default => undef,
   }
 
   file { "${nm::conn_dir}/${name}.nmconnection":
