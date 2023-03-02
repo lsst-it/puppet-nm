@@ -42,7 +42,10 @@ describe 'nm' do
         it do
           is_expected.to contain_exec('nmcli conn reload').with(
             command: '/bin/nmcli conn reload',
-            refreshonly: true
+            refreshonly: true,
+            timeout: 30,
+            tries: 3,
+            try_sleep: 10
           )
         end
       end
