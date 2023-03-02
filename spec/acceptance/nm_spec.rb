@@ -4,11 +4,7 @@ require 'spec_helper_acceptance'
 
 describe 'nm class' do
   context 'without any parameters' do
-    let(:manifest) do
-      <<-PP
-      include nm
-      PP
-    end
+    include_examples 'the example', 'nm.pp'
 
     it_behaves_like 'an idempotent resource'
 

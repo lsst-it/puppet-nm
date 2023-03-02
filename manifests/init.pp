@@ -70,7 +70,7 @@ class nm (
   }
 
   exec { 'nmcli conn reload':
-    command     => '/bin/nmcli conn reload',
+    command     => '/bin/sleep 1 && /bin/nmcli conn reload',
     refreshonly => true,
   }
 }
