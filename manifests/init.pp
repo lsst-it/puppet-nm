@@ -1,14 +1,25 @@
 # @summary
 #   Manage NetworkManager
 #
+# @param conf
+#   If a String:
+#   Verbatim content of `NetworkManager.conf`.
+#
+#   If a Hash:
+#   Hash of data to serialize to `NetworkManager.conf`.
+#
+#   See: https://networkmanager.dev/docs/api/latest/nm-settings-keyfile.html
+#
 # @param connections
 #   Hash of nm::connection resources to create
 #
 class nm (
+  Optional[Variant[String[1], Hash[String, Hash]]] $conf = undef,
   Optional[Hash[String, Hash]] $connections = undef,
 ) {
-  $conf_dir= '/etc/NetworkManager/conf.d'
-  $conn_dir = '/etc/NetworkManager/system-connections'
+  $conf_dir= '/etc/NetworkManager'
+  $conf_d_dir= "${conf_dir}/conf.d"
+  $conn_dir = "${conf_dir}/system-connections"
 
   require nm::install
   require nm::service
@@ -25,36 +36,26 @@ class nm (
   }
 
   # remove any conflicting nm drop-in config files
-  # XXX NetworkManager.conf needs to be handled
-  file { $conf_dir:
+  file { $conf_d_dir:
     ensure  => 'directory',
     purge   => true,
     recurse => true,
     force   => true,
   }
 
-  file { "${conf_dir}/ignore-unknown-interfaces.conf":
-    ensure  => 'file',
-    mode    => '0644',
-    # lint:ignore:strict_indent
-    content => @("CONF"),
-      [main]
-      # do not create connections for unmanaged interfaces
-      no-auto-default=*
-      | CONF
-    # lint:endignore
+  # write NetworkManager.conf
+  $ini_config = { 'quote_char' => undef }
+
+  $_real_conf= $conf? {
+    String  => $conf,
+    Hash    => extlib::to_ini($conf, $ini_config),
+    default => undef,
   }
 
-  file { "${conf_dir}/resolv_conf.conf":
+  file { "${conf_dir}/NetworkManager.conf":
     ensure  => 'file',
     mode    => '0644',
-    # lint:ignore:strict_indent
-    content => @("CONF"),
-      [main]
-      # do not write to /etc/resolv.conf
-      dns=none
-      | CONF
-    # lint:endignore
+    content => $_real_conf,
   }
 
   # remove unmanaged .nmconnection files

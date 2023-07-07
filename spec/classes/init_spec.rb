@@ -31,6 +31,13 @@ describe 'nm' do
         end
 
         it do
+          is_expected.to contain_file('/etc/NetworkManager/NetworkManager.conf').with(
+            ensure: 'file',
+            mode: '0644'
+          )
+        end
+
+        it do
           is_expected.to contain_file('/etc/NetworkManager/system-connections').with(
             ensure: 'directory',
             purge: true,
