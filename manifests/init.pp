@@ -72,5 +72,8 @@ class nm (
   exec { 'nmcli conn reload':
     command     => '/bin/nmcli conn reload',
     refreshonly => true,
+    timeout     => 30,
+    tries       => 3,
+    try_sleep   => 10,
   }
 }
