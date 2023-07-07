@@ -12,9 +12,47 @@ describe 'nm class' do
       it { is_expected.to be_installed }
     end
 
+    describe file('/etc/NetworkManager/NetworkManager.conf') do
+      it { is_expected.to be_file }
+      it { is_expected.to be_owned_by 'root' }
+      it { is_expected.to be_grouped_into 'root' }
+      it { is_expected.to be_mode '644' } # serverspec does not like a leading 0
+
+      its(:content) do
+        is_expected.to match <<~CONTENT
+          # THIS FILE IS CONTROLLED BY PUPPET
+
+          [main]
+
+          [logging]
+        CONTENT
+      end
+    end
+
     describe service('NetworkManager') do
       it { is_expected.to be_enabled }
       it { is_expected.to be_running }
+    end
+  end
+
+  context 'with conf parameter' do
+    include_examples 'the example', 'nm_conf.pp'
+
+    describe file('/etc/NetworkManager/NetworkManager.conf') do
+      it { is_expected.to be_file }
+      it { is_expected.to be_owned_by 'root' }
+      it { is_expected.to be_grouped_into 'root' }
+      it { is_expected.to be_mode '644' } # serverspec does not like a leading 0
+
+      its(:content) do
+        is_expected.to match <<~CONTENT
+          # THIS FILE IS CONTROLLED BY PUPPET
+
+          [main]
+          dns=none
+          no-auto-default=*
+        CONTENT
+      end
     end
   end
 end
