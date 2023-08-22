@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v0.2.0](https://github.com/lsst-it/puppet-nm/tree/v0.2.0) (2023-08-22)
+
+[Full Changelog](https://github.com/lsst-it/puppet-nm/compare/v0.1.0...v0.2.0)
+
+**Implemented enhancements:**
+
+- allow puppet/extlib 7.x [\#10](https://github.com/lsst-it/puppet-nm/pull/10) ([jhoblitt](https://github.com/jhoblitt))
+
 ## [v0.1.0](https://github.com/lsst-it/puppet-nm/tree/v0.1.0) (2023-07-07)
 
 [Full Changelog](https://github.com/lsst-it/puppet-nm/compare/b4457f4ff3e161f0874121489e59f71b2148598c...v0.1.0)
