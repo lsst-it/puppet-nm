@@ -67,7 +67,11 @@ class nm (
   }
 
   if $connections {
-    ensure_resources('nm::connection', $connections)
+    $connections.each | $_name, $_params  | {
+      nm::connection { $_name:
+        * => $_params,
+      }
+    }
   }
 
   exec { 'nmcli conn reload':
