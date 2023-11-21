@@ -46,6 +46,21 @@ describe 'nm' do
           )
         end
 
+        context 'with purge_connections false' do
+          let(:params) do
+            { purge_connections: false }
+          end
+
+          it do
+            is_expected.to contain_file('/etc/NetworkManager/system-connections').with(
+              ensure: 'directory',
+              purge: false,
+              recurse: false,
+              force: true
+            )
+          end
+        end
+
         it do
           is_expected.to contain_exec('nmcli conn reload').with(
             command: '/bin/nmcli conn reload',
