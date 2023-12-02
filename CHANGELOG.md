@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v0.3.0](https://github.com/lsst-it/puppet-nm/tree/v0.3.0) (2023-12-02)
+
+[Full Changelog](https://github.com/lsst-it/puppet-nm/compare/v0.2.0...v0.3.0)
+
+**Implemented enhancements:**
+
+- Migrate ensure\_resources to slat operator [\#14](https://github.com/lsst-it/puppet-nm/pull/14) ([traylenator](https://github.com/traylenator))
+- Leave readme-ifcfg-rh.txt untouched [\#13](https://github.com/lsst-it/puppet-nm/pull/13) ([traylenator](https://github.com/traylenator))
+- New parameter purge\_connections [\#12](https://github.com/lsst-it/puppet-nm/pull/12) ([traylenator](https://github.com/traylenator))
+
 ## [v0.2.0](https://github.com/lsst-it/puppet-nm/tree/v0.2.0) (2023-08-22)
 
 [Full Changelog](https://github.com/lsst-it/puppet-nm/compare/v0.1.0...v0.2.0)
