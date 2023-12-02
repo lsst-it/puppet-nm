@@ -1,6 +1,6 @@
 {
   "name": "lsst-nm",
-  "version": "0.3.0",
+  "version": "0.3.1-rc0",
   "author": "AURA/LSST/Rubin Observatory",
   "summary": "manages the infamous NetworkManager",
   "license": "Apache-2.0",
