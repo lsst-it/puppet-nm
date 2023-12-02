@@ -31,12 +31,19 @@ class nm (
   Class['nm::install']
   -> Class['nm::service']
 
+  $_ignore = $facts['os']['release']['major'] ? {
+    '7'      => undef,
+    '8'      => undef,
+    default => 'readme-ifcfg-rh.txt',
+  }
+
   # remove ifcfg-* files to prevent conflicts between ifcfg- and .nmconnection
   file { '/etc/sysconfig/network-scripts':
     ensure  => 'directory',
     purge   => true,
     recurse => true,
     force   => true,
+    ignore  => $_ignore,
   }
 
   # remove any conflicting nm drop-in config files

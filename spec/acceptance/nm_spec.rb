@@ -12,6 +12,15 @@ describe 'nm class' do
       it { is_expected.to be_installed }
     end
 
+    describe file('/etc/sysconfig/network-scripts/readme-ifcfg-rh.txt') do
+      case fact('os.release.major')
+      when '7', '8'
+        it { is_expected.not_to be file }
+      else
+        it { is_expected.to be_file }
+      end
+    end
+
     describe file('/etc/NetworkManager/NetworkManager.conf') do
       it { is_expected.to be_file }
       it { is_expected.to be_owned_by 'root' }

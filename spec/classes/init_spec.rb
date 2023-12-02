@@ -21,6 +21,13 @@ describe 'nm' do
           )
         end
 
+        case facts[:os]['release']['major']
+        when '7', '8'
+          it { is_expected.to contain_file('/etc/sysconfig/network-scripts').without_ignore }
+        else
+          it { is_expected.to contain_file('/etc/sysconfig/network-scripts').with_ignore('readme-ifcfg-rh.txt') }
+        end
+
         it do
           is_expected.to contain_file('/etc/NetworkManager/conf.d').with(
             ensure: 'directory',
