@@ -13,9 +13,13 @@
 # @param connections
 #   Hash of nm::connection resources to create
 #
+# @param purge_connections
+#   If `true` unmanaged connections will be purged.
+#
 class nm (
   Optional[Variant[String[1], Hash[String, Hash]]] $conf = undef,
   Optional[Hash[String, Hash]] $connections = undef,
+  Boolean $purge_connections = true,
 ) {
   $conf_dir= '/etc/NetworkManager'
   $conf_d_dir= "${conf_dir}/conf.d"
@@ -61,8 +65,8 @@ class nm (
   # remove unmanaged .nmconnection files
   file { $conn_dir:
     ensure  => 'directory',
-    purge   => true,
-    recurse => true,
+    purge   => $purge_connections,
+    recurse => $purge_connections,
     force   => true,
   }
 
