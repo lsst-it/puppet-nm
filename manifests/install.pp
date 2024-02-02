@@ -2,5 +2,7 @@
 class nm::install {
   assert_private()
 
-  ensure_packages(['NetworkManager'])
+  package { 'NetworkManager':
+    ensure => present,
+  }
 }
