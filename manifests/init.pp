@@ -25,11 +25,8 @@ class nm (
   $conf_d_dir= "${conf_dir}/conf.d"
   $conn_dir = "${conf_dir}/system-connections"
 
-  require nm::install
-  require nm::service
-
-  Class['nm::install']
-  -> Class['nm::service']
+  include nm::install
+  include nm::service
 
   $_ignore = $facts['os']['release']['major'] ? {
     '7'      => undef,
@@ -67,6 +64,7 @@ class nm (
     ensure  => 'file',
     mode    => '0644',
     content => $_real_conf,
+    notify  => Service['NetworkManager'],
   }
 
   # remove unmanaged .nmconnection files
