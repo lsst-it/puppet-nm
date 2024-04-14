@@ -25,8 +25,11 @@ class nm (
   $conf_d_dir= "${conf_dir}/conf.d"
   $conn_dir = "${conf_dir}/system-connections"
 
-  include nm::install
-  include nm::service
+  require nm::install
+  require nm::service
+
+  Class['nm::install']
+  -> Class['nm::service']
 
   $_ignore = $facts['os']['release']['major'] ? {
     '7'      => undef,
