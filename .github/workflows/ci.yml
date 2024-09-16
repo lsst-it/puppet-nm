@@ -4,7 +4,8 @@
 
 name: CI
 
-"on":
+# yamllint disable-line rule:truthy
+on:
   pull_request: {}
   push:
     branches:
@@ -18,4 +19,4 @@ concurrency:
 jobs:
   puppet:
     name: Puppet
-    uses: voxpupuli/gha-puppet/.github/workflows/beaker.yml@v2
+    uses: voxpupuli/gha-puppet/.github/workflows/beaker.yml@v3
