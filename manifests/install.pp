@@ -2,5 +2,5 @@
 class nm::install {
   assert_private()
 
-  ensure_packages(['NetworkManager'])
+  stdlib::ensure_packages(['NetworkManager'])
 }
