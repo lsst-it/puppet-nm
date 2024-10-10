@@ -52,6 +52,7 @@ describe 'nm class' do
       it { is_expected.to be_owned_by 'root' }
       it { is_expected.to be_grouped_into 'root' }
       it { is_expected.to be_mode '644' } # serverspec does not like a leading 0
+      it { is_expected.that_notifies 'Service[NetworkManager]' }
 
       its(:content) do
         is_expected.to match <<~CONTENT

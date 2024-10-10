@@ -5,5 +5,6 @@ class nm::service {
   Service { 'NetworkManager':
     ensure => 'running',
     enable => true,
+    require => Package['NetworkManager'],
   }
 }
