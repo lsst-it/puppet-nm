@@ -4,7 +4,7 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
 group :test do
-  gem 'voxpupuli-test', '~> 13.0',              :require => false
+  gem 'voxpupuli-test', '~> 14.0',              :require => false
   gem 'puppet_metadata', '~> 5.0',              :require => false
   gem 'puppet-lint-package_ensure-check',       :require => false
   gem 'puppet-lint-resource_reference_syntax',  :require => false
